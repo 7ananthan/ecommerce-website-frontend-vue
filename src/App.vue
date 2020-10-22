@@ -1,11 +1,12 @@
 <template>
 <div>
-  <Navbar/>
-  <Menu/>
-  <Carousel/>
-  <Product/>
-  <MyCart/>
-  
+  <div>
+  <Navbar :insideCart ="cartData"/>
+  </div>
+  <div><Menu/></div>
+ <div><Carousel/></div> 
+ <div><Product @cartItems="updateCart"/></div> 
+ 
     </div>
   </template>
 
@@ -19,6 +20,12 @@ import MyCart from './components/MyCart'
 
 export default {
   name: 'App',
+  data: () => ({
+  
+    cartData: [
+     
+    ],
+  }),
 
   components: {
     Navbar,
@@ -29,9 +36,11 @@ export default {
    
     HelloWorld,
   },
+  methods:{
+    updateCart(result){
+      this.cartData=result;
+    }
+  }
 
-  data: () => ({
-    //
-  }),
 };
 </script>

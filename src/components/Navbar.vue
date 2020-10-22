@@ -48,23 +48,17 @@
 
 <script>
 
-import Product from './Product'
 export default {
     name:"Navbar",
-     data: () => ({
-    cart: [
-     
-    ],
-   
-  }),
-    components:{
-      Product
+    props:{
+      insideCart :Array
     },
     computed: {
     cartCount() {
-      return this.cart.length;
+      return this.insideCart.length;
     },
   },
+  
     
 }
 </script>

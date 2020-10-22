@@ -1,6 +1,6 @@
 <template>
-  <div>
-   
+  <div>   
+     <Navigation cart = "cart"/>
     <v-container>
       <v-row :align="center" no-gutters style="height: auto">
         <v-col v-for="product in products" :key="product.productName" :cols="6">
@@ -23,33 +23,23 @@
         </v-col>
       </v-row>
       <br />
-
-      <div>
-        <v-badge color="#3F51B5" :content="cartCount">
-          <v-icon> mdi-cart </v-icon>
-        </v-badge>
-      </div>
-    </v-container>
+          </v-container>
   </div>
 </template>
 
 <script>
+
 import axios from "axios";
 export default {
  
   name: "Product",
-  props:{cart},
   data: () => ({
     cart: [
      
     ],
     products: [],
   }),
-  computed: {
-    cartCount() {
-      return this.cart.length;
-    },
-  },
+  
   async mounted() {
     let { data } = await axios.get(
       "http://localhost:5000/api/v1/product/allproducts"
@@ -61,8 +51,9 @@ export default {
     addCart(product) {
        {
         this.cart.push(product)
+        this.$emit("cartItems",this.cart)
             }
-            alert(JSON.stringify(this.cart))
+            // alert(JSON.stringify(this.cart))
     },
   },
 };
