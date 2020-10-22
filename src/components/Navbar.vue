@@ -24,6 +24,7 @@
             
        <v-badge
         color="#3F51B5"
+        :content="cartCount"
          >
           <v-icon>
             mdi-cart
@@ -46,8 +47,25 @@
 </template>
 
 <script>
+
+import Product from './Product'
 export default {
-    name:"Navbar"
+    name:"Navbar",
+     data: () => ({
+    cart: [
+     
+    ],
+   
+  }),
+    components:{
+      Product
+    },
+    computed: {
+    cartCount() {
+      return this.cart.length;
+    },
+  },
+    
 }
 </script>
 <style scoped>

@@ -4,6 +4,7 @@
   <Menu/>
   <Carousel/>
   <Product/>
+  <MyCart/>
   
     </div>
   </template>
@@ -14,6 +15,7 @@ import Menu from './components/Menu';
 import Navbar from './components/Navbar'
 import Carousel from './components/Carousel'
 import Product from './components/Product'
+import MyCart from './components/MyCart'
 
 export default {
   name: 'App',
@@ -23,6 +25,7 @@ export default {
     Menu,
     Carousel,
     Product,
+    MyCart,
    
     HelloWorld,
   },
