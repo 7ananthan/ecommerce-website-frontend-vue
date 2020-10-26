@@ -1,18 +1,30 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Products from '../components/Product'
+import VueRouter from 'vue-router'
+import MyCart from '../views/MyCart'
+import Checkout from "../views/Checkout"
+import HomePage from "../views/Home"
 
+Vue.use(VueRouter);
 
-Vue.use(Router);
-
-export default new Router(
+const routes = [
     {
-        routes:[
-            {
-                path:'',
-                name : 'Products',
-                component: Products
-            }
-        ]
+        "path" : "/",
+        "name" : "home",
+        "component" : HomePage
+    },
+    {
+        "path" : "/cart",
+        "name" : "cart",
+        "component" : MyCart 
+    },
+    {
+        "path" : "/checkout",
+        "name" : "checkout",
+        "component" : Checkout 
     }
-)
+]
+
+const router = new VueRouter({
+    routes
+})
+export default router

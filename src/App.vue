@@ -1,22 +1,19 @@
 <template>
-<div>
-  <div>
-  <Navbar :insideCart ="cartData"/>
-  </div>
-  <div><Menu/></div>
- <div><Carousel/></div> 
- <div><Product @cartItems="updateCart"/></div> 
- 
-    </div>
-  </template>
+<v-app>
+     <Navbar :insideCart ="cartData"/>
+     <v-main>
+            <router-view></router-view>
+    </v-main>
+     <MyFooter/>
+</v-app>
+</template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-import Menu from './components/Menu';
+
 import Navbar from './components/Navbar'
-import Carousel from './components/Carousel'
-import Product from './components/Product'
-import MyCart from './components/MyCart'
+import MyFooter from './components/Footer'
+
+
 
 export default {
   name: 'App',
@@ -29,18 +26,9 @@ export default {
 
   components: {
     Navbar,
-    Menu,
-    Carousel,
-    Product,
-    MyCart,
-   
-    HelloWorld,
+    MyFooter,
+    
   },
-  methods:{
-    updateCart(result){
-      this.cartData=result;
-    }
-  }
 
 };
 </script>

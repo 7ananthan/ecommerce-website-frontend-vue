@@ -1,9 +1,9 @@
 <template>
   <div>   
-     <Navigation cart = "cart"/>
+ 
     <v-container>
       <v-row :align="center" no-gutters style="height: auto">
-        <v-col v-for="product in products" :key="product.productName" :cols="6">
+        <v-col v-for="product in PRODUCTS" :key="product.productName" :cols="6">
           <v-card class="pa-2" outlined tile :align="center">
             <v-img
               :src="product.productImage"
@@ -16,7 +16,7 @@
             </v-img>
             <v-card-action>
               <v-card-title v-text="product.productName"> </v-card-title>
-              <v-card-subtitle v-text="product.productPrice"> </v-card-subtitle>
+              <v-card-text > Rs {{product.productPrice}} </v-card-text>
               <v-btn @click="addCart(product)" color="blue"> buy</v-btn>
             </v-card-action>
           </v-card>
@@ -28,32 +28,30 @@
 </template>
 
 <script>
-
+import {mapGetters} from 'vuex';
 import axios from "axios";
 export default {
  
   name: "Product",
   data: () => ({
-    cart: [
-     
-    ],
-    products: [],
+    cart: [],
+   
   }),
   
   async mounted() {
-    let { data } = await axios.get(
-      "http://localhost:5000/api/v1/product/allproducts"
-    );
-    this.products = data;
-    console.log = data;
+     this.$store.dispatch('GET_PRODUCTS')
   },
+  computed : {
+              ...mapGetters(['PRODUCTS']),
+   
+      },
   methods: {
     addCart(product) {
        {
-        this.cart.push(product)
-        this.$emit("cartItems",this.cart)
+        this.$store.dispatch('ADD_TOCART',product)
             }
-            // alert(JSON.stringify(this.cart))
+            
+           
     },
   },
 };
